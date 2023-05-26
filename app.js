@@ -1,11 +1,18 @@
 const express = require("express");
 const schedule = require("node-schedule");
+const cors = require('cors')
 const axios = require("axios");
 
 const port = 3000;
 const app = express();
 
-app.get("/", async (req, res) => {
+const corsConfig = {
+  origin: 'https://app.tana.inc',
+  optionsSuccessStatus: 200
+}
+
+
+app.get("/", cors(corsConfig), async (req, res) => {
   const date = req.query.date;
   const postData = {
     topic: req.query.topic,
